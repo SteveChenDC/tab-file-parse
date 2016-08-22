@@ -1,0 +1,7 @@
+<h3>Import Orders</h3>
+<%= form_tag import_orders_path, multipart: true do %>
+  <%= file_field_tag :file %>
+  <%= submit_tag "Upload Tab delimited file" %>
+<% end %>
+
+<p id="notice"><%= notice %></p>
