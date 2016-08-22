@@ -7,6 +7,10 @@ class Order < ActiveRecord::Base
       orders_arr << transformed_row['item_price'].to_f * transformed_row['purchase_count'].to_i
       Order.create! transformed_row
     end
-    orders_arr.inject(0, :+).to_s
+    Order.sum_revenue(orders_arr)
+  end
+
+  def self.sum_revenue(arr)
+    arr.inject(0, :+).to_s
   end
 end
