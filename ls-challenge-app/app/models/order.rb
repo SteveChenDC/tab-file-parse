@@ -1,4 +1,8 @@
 class Order < ActiveRecord::Base
+  belongs_to :purchaser
+  belongs_to :merchant
+  has_one    :item
+
   def self.import_file(file)
     # Empty array to store the total revenue of each row
     revenue_of_orders_arr = []
