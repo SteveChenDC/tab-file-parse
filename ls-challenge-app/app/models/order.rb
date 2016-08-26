@@ -1,16 +1,12 @@
 class Order < ActiveRecord::Base
-  def self.import(file)
+  def self.import_file(file)
     # Empty array to store the total revenue of each row
-    orders_arr = []
+    revenue_of_orders_arr = []
     CSV.foreach(file.path, headers: true, col_sep: "\t") do |row|
-      transformed_row = row.to_hash.transform_keys! { |key| key.to_s.gsub(' ', '_') }
-      orders_arr << transformed_row['item_price'].to_f * transformed_row['purchase_count'].to_i
-      Order.create! transformed_row
+      revenue_of_orders_arr << row['item price'].to_f * row['purchase count'].to_i
+      Order.create(purchaser_name: row['purchaser name'], item_description: row['item description'], item_price: row['item price'],
+      purchase_count: row['purchase count'], merchant_address: row['merchant address'], merchant_name: row['merchant name'])
     end
-    Order.sum_revenue(orders_arr)
-  end
-
-  def self.sum_revenue(arr)
-    arr.inject(0, :+).to_s
+    revenue_of_orders_arr.inject(:+)
   end
 end
