@@ -12,9 +12,20 @@ This app accepts an upload of a tab-delimited file with the columns: purchaser n
 - run `rails server` into Terminal
 - The app should be accessible at `localhost:3000` within your Terminal
 
-# Prequisites
-- Rails 4.2.6
-- SQLite version 3.8.10.2
+# Notes
+- The order.rb holds the `import_file` method this app is primarily using.
+- The method uses the CSV library within Rails and reads through each line of the file and declaring it to the block parameter, `row`.
+- The file.path is indicated from the `<%= file_field_tag :file %>` in the views/orders/index.html.erb.
+- Each line of the file is now a hash with the keys indicated by the headers of the file.
+- As the block is run it saves the data into each table given the assumed hash key.
+- The revenue of each order is calculated by multiplying the item price by the count then pushed into an empty array called  `revenue_of_orders_arr`. The sum for that array is then found using `.inject(:+)` and returned to the `@revenue` variable in the orders_controller.rb.
+- The `@revenue` is then shown to the user as part of a flash message, upon redirect with it interpolated into currency using the `number_to_currency` method from the ` ActionView::Helpers::NumberHelper`.
+
+# Additional Notes
+![Image of the ERD](http://i.imgur.com/beyDmMr.png)
+
+Also wrote tests using the shoulda-matchers gem for the model associations, implementing using a TDD process. There's so many ways to go at making it production-ready but I think what I've listed would be the next immediate steps. There's a very good likelyhood I'll continue to work on it when I get stumped with my other projects.
+It was a pleasure working on this project. It helped me get familiar with some useful libraries within Rails and the numbers_to_currency helper method in `ActionView::Helpers::NumberHelper` that I never knew existed!
 
 # Things I would do with more time and to make it production-ready
 - Write unit and integration tests
@@ -27,14 +38,6 @@ This app accepts an upload of a tab-delimited file with the columns: purchaser n
 - Add an admin role to be able to see all the orders uploaded
 - Use OpenID for authentication
 - Have main content display ONLY after user is authenticated
-
-
-# Notes
-It was a pleasure working on this project. It helped me get familiar with some useful libraries within Rails and the numbers_to_currency helper method in `ActionView::Helpers::NumberHelper` that I never knew existed!
-
-References
-- http://ruby-doc.org/stdlib-1.9.2/libdoc/csv/rdoc/CSV.html
-- http://stackoverflow.com/questions/4404787/whats-the-best-way-to-parse-a-tab-delimited-file-in-ruby
-- http://api.rubyonrails.org/classes/ActionView/Helpers/NumberHelper.html
-- https://github.com/plataformatec/devise#getting-started
-- http://apidock.com/rails/Hash/transform_keys
+- Get more specs to define what I'm actually doing and how to contribute
+- Get someone to QA this to make it better
+>>>>>>> 18798fc... Add ERD image to README and more edits
