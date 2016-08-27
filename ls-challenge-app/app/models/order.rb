@@ -8,10 +8,13 @@ class Order < ActiveRecord::Base
     revenue_of_orders_arr = []
     CSV.foreach(file.path, headers: true, col_sep: "\t") do |row|
       revenue_of_orders_arr << row['item price'].to_f * row['purchase count'].to_i
-      Purchaser.create(name: row['purchaser name'])
-      Merchant.create(address: row['merchant address'], name: row['merchant name'])
-      Item.create(description: row['item description'], price: row['item price'])
-      Order.create(purchase_count: row['purchase count'])
+      p = Purchaser.new(name: row['purchaser name'])
+      p.save
+      m = Merchant.find_or_create_by(address: row['merchant address'], name: row['merchant name'])
+      o = Order.new(purchase_count: row['purchase count'], purchaser_id: p.id, merchant_id: m.id)
+      o.save
+      i = Item.new(description: row['item description'], price: row['item price'], order_id: o.id, merchant_id: m.id)
+      i.save
     end
     revenue_of_orders_arr.inject(:+)
   end
