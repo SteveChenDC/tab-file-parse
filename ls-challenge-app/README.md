@@ -38,6 +38,5 @@ It was a pleasure working on this project. It helped me get familiar with some u
 - Add an admin role to be able to see all the orders uploaded
 - Use OpenID for authentication
 - Have main content display ONLY after user is authenticated
-- Get more specs to define what I'm actually doing and how to contribute
+- Get more specs to define long-term goals 
 - Get someone to QA this to make it better
->>>>>>> 18798fc... Add ERD image to README and more edits
