@@ -1,13 +1,7 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  description: MyString
+meal_deal:
+  description: "Buy one get one for $0.01"
   price: 1.5
-  merchant_id: 
-  order_id: 
-
-two:
-  description: MyString
-  price: 1.5
-  merchant_id: 
-  order_id: 
+  merchant_id: 1
+  order_id: 2
