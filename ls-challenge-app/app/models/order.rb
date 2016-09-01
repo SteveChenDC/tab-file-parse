@@ -1,16 +1,21 @@
 class Order < ActiveRecord::Base
-  def self.import(file)
-    # Empty array to store the total revenue of each row
-    orders_arr = []
-    CSV.foreach(file.path, headers: true, col_sep: "\t") do |row|
-      transformed_row = row.to_hash.transform_keys! { |key| key.to_s.gsub(' ', '_') }
-      orders_arr << transformed_row['item_price'].to_f * transformed_row['purchase_count'].to_i
-      Order.create! transformed_row
-    end
-    Order.sum_revenue(orders_arr)
-  end
+  belongs_to :purchaser
+  belongs_to :merchant
+  has_one    :item
 
-  def self.sum_revenue(arr)
-    arr.inject(0, :+).to_s
+  def self.import_file(file)
+    # Empty array to store the total revenue of each row
+    revenue_of_orders_arr = []
+    CSV.foreach(file.path, headers: true, col_sep: "\t") do |row|
+      revenue_of_orders_arr << row['item price'].to_f * row['purchase count'].to_i
+      p = Purchaser.new(name: row['purchaser name'])
+      p.save
+      m = Merchant.find_or_create_by(address: row['merchant address'], name: row['merchant name'])
+      o = Order.new(purchase_count: row['purchase count'], purchaser_id: p.id, merchant_id: m.id)
+      o.save
+      i = Item.new(description: row['item description'], price: row['item price'], order_id: o.id, merchant_id: m.id)
+      i.save
+    end
+    revenue_of_orders_arr.inject(:+)
   end
 end
