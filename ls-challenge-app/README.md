@@ -4,6 +4,11 @@ This app accepts an upload of a tab-delimited file with the columns: purchaser n
 # Userflow
 - They upload a file containing the columns listed above, data is imported into the database, returns gross revenue of the file.
 
+# You need
+- Ruby 2.3
+- Rails 4.2.x
+- Postgres 9.5
+
 # Setup
 - clone the Repo by entering `git clone git@github.com:SteveChenDC/web-engineering.git` in Terminal
 - navigate to `/ls-challenge-app` folder containing the Rails app
