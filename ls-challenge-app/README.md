@@ -13,6 +13,7 @@ This app accepts an upload of a tab-delimited file with the columns: purchaser n
 - clone the Repo by entering `git clone git@github.com:SteveChenDC/web-engineering.git` in Terminal
 - navigate to `/ls-challenge-app` folder containing the Rails app
 - run `bundle install` in the Terminal to install gems
+- run `rake db:create` in Terminal to create the database
 - run `rake db:migrate` in Terminal to migrate the database
 - run `rails server` into Terminal
 - The app should be accessible at `localhost:3000` within your Terminal
