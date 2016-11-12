@@ -1,4 +1,4 @@
-# LS Code challenge - Tab Delimited file uploader
+# Dead company Code challenge - Tab Delimited file uploader
 This app accepts an upload of a tab-delimited file with the columns: purchaser name, item description, item price, purchase count, merchant address, and merchant name. In this exact order. The app parses the data into a relational database. Then it will display the gross revenue of all the purchases within the form. It also includes user authorization with devise.
 
 # Userflow
@@ -30,10 +30,9 @@ This app accepts an upload of a tab-delimited file with the columns: purchaser n
 # Additional Notes
 ![Image of the ERD](http://i.imgur.com/beyDmMr.png)
 
-Also wrote tests using the shoulda-matchers gem for the model associations, implementing using a TDD process. There's so many ways to go at making it production-ready but I think what I've listed would be the next immediate steps. There's a very good likelyhood I'll continue to work on it when I get stumped with my other projects.
 It was a pleasure working on this project. It helped me get familiar with some useful libraries within Rails and the numbers_to_currency helper method in `ActionView::Helpers::NumberHelper` that I never knew existed!
 
-# Things I would do with more time and to make it production-ready
+<!-- # Things I would do with more time and to make it production-ready
 - Write unit and integration tests
 - Implement automated testing with Codeship
 - Job processing with ActiveJob and Sidekiq
@@ -45,4 +44,4 @@ It was a pleasure working on this project. It helped me get familiar with some u
 - Use OpenID for authentication
 - Have main content display ONLY after user is authenticated
 - Get more specs to define long-term goals
-- Get someone to QA this to make it better
+- Get someone to QA this to make it better -->
