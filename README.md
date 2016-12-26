@@ -1,4 +1,4 @@
-# Dead company Code challenge - Tab Delimited file uploader
+# Code challenge - Tab Delimited file uploader
 This app accepts an upload of a tab-delimited file with the columns: purchaser name, item description, item price, purchase count, merchant address, and merchant name. In this exact order. The app parses the data into a relational database. Then it will display the gross revenue of all the purchases within the form. It also includes user authorization with devise.
 
 # Userflow
